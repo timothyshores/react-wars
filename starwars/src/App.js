@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+
+import CharacterCard from "./components/CharacterCard";
+
+import { Spinner } from "reactstrap";
 import "./App.css";
 
 const App = () => {
@@ -16,6 +20,7 @@ const App = () => {
 		axios
 			.get("https://swapi.co/api/people/")
 			.then(res => {
+				console.log("App.js res.data.results", res.data.results);
 				setCharacters(res.data.results);
 			})
 			.catch(err => console.log(err));
@@ -24,6 +29,16 @@ const App = () => {
 	return (
 		<div className="App">
 			<h1 className="Header">React Wars</h1>
+			{characters.length === 0 ? (
+				<Spinner
+					color="danger"
+					style={{ width: "10rem", height: "10rem", marginTop: "25vh" }}
+				/>
+			) : (
+				characters.map(character => (
+					<CharacterCard key={character.name} character={character} />
+				))
+			)}
 		</div>
 	);
 };
