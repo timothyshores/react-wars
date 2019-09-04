@@ -14,9 +14,10 @@ const CharacterCard = ({ character }) => {
 		skin_color,
 		films
 	} = character;
+
 	return (
 		<>
-			<Card>
+			<Card style={{ margin: "20px" }}>
 				<CardBody>
 					<CardTitle>{name}</CardTitle>
 					<CardText> Born: {birth_year}</CardText>

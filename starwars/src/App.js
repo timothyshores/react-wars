@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import CharacterCard from "./components/CharacterCard";
-
-import { Spinner } from "reactstrap";
+import { Container, Row, Col, Spinner } from "reactstrap";
 import "./App.css";
 
 const App = () => {
@@ -29,16 +28,22 @@ const App = () => {
 	return (
 		<div className="App">
 			<h1 className="Header">React Wars</h1>
-			{characters.length === 0 ? (
-				<Spinner
-					color="danger"
-					style={{ width: "10rem", height: "10rem", marginTop: "25vh" }}
-				/>
-			) : (
-				characters.map(character => (
-					<CharacterCard key={character.name} character={character} />
-				))
-			)}
+			<Container>
+				<Row style={{ width: "50vw" }}>
+					{characters.length === 0 ? (
+						<Spinner
+							color="danger"
+							style={{ width: "10rem", height: "10rem", marginTop: "25vh" }}
+						/>
+					) : (
+						characters.map(character => (
+							<Col xs="6">
+								<CharacterCard key={character.name} character={character} />
+							</Col>
+						))
+					)}
+				</Row>
+			</Container>
 		</div>
 	);
 };
